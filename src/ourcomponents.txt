@@ -1,0 +1,14 @@
+Components
+
+Route
+  HomePage
+  NavBar
+  - LoginForm
+  - SignupForm
+  Profile
+  Companies / Jobs / generic list? 
+  - SearchBar
+  - JobCard
+  - CompanyCard
+  CompanyPage
+    - JobCard
