@@ -1,0 +1,20 @@
+.NavBar {
+  height: 50px;
+  border-bottom: 1px solid #eee;
+  top: 0;
+}
+
+.NavBar h4 {
+  display: inline-block;
+}
+
+.NavBar p {
+  display: inline-block;
+  margin: 0px 0px 10px 15px;
+}
+
+.active {
+  font-weight: 600;
+  color: #111;
+  text-decoration: none;
+}

@@ -27,19 +27,23 @@ class JoblyApi {
     }
   }
 
+  // Requests data about a single company using the handle.
   static async getCompany(handle) {
     console.log("handle: ",handle)
     let res = await this.request(`companies/${handle}`);
+    console.log("From getCompany:", res);
     return res.company;
   }
 
-  static async getCompanies() {
-    let res = await this.request("companies/");
+  // Requests data about all companies, can be modified by a search term.
+  static async getCompanies(term) {
+    let res = await this.request(`companies?search=${term}`);
     return res.companies;
   }
 
-  static async getJobs() {
-    let res = await this.request("jobs/");
+  // Requests data about all jobs, can be modified by a search term.
+  static async getJobs(term) {
+    let res = await this.request(`jobs?search=${term}`);
     return res.jobs;
   }
 

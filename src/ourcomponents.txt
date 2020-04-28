@@ -6,7 +6,8 @@ Route
   - LoginForm
   - SignupForm
   Profile
-  Companies / Jobs / generic list? 
+  Companies
+  Jobs
   - SearchBar
   - JobCard
   - CompanyCard
