@@ -7,6 +7,8 @@ import Search from "./Search";
  *    States: 
  *      jobs: Array of objects with the job data.
  *      searchTerm: User-input string to provide to the API request.
+ *      error: Tracks errors and determines what to show users
+ *      loading: Determines what to show users while waiting on API call
  */
 
 function Jobs() {

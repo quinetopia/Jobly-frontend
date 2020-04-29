@@ -7,6 +7,8 @@ import Search from "./Search";
  *    States:
  *      companies: Array of company objects, used to provide data for CompanyCards.
  *      searchTerm: User-input string, provided to the API.
+ *      Error: Tracks errors and determines what to show users
+ *      loading: Determines what to show users while waiting on API call
  */
 
 function Companies() {

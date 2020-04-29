@@ -8,6 +8,8 @@ import JobCard from "./JobCard";
  *     handle: the company handle, used to get the appropriate data from the API.
  *  States:
  *    company: an object containing the data for the company.
+ *    error: Tracks errors and determines what to show users
+ *    loading: determines what to show users while waiting on API call
  */
 
 function Company(){
