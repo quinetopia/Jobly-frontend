@@ -3,6 +3,9 @@ import JoblyApi from "./JoblyApi"
 import CompanyCard from "./CompanyCard"
 import Search from "./Search";
 
+// Include state "isLoading" or something so we can show people things are working while it loads inplace of 
+// of the companies ternary in the return statement.
+
 /** List of companies, data comes from API.
  *    States:
  *      companies: Array of company objects, used to provide data for CompanyCards.
@@ -17,10 +20,10 @@ function Companies() {
   useEffect(() => {
       async function fetchCompanies (term) {
         try {
-          const companiesResult = await (JoblyApi.getCompanies(term));
+          const companiesResult = await JoblyApi.getCompanies(term);
           setCompanies(companiesResult);
         } catch(err) {
-          //something...?  
+          //something...? Put an alert
         }
       }
         fetchCompanies(searchTerm);

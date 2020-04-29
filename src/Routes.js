@@ -3,6 +3,9 @@ import { Route, Switch } from "react-router-dom";
 import Companies from "./Companies";
 import Company from "./Company";
 import Jobs from "./Jobs";
+import Home from "./Home"
+import Profile from "./Profile"
+import Login from "./Login"
 
 /** Controls which components to load based on url. 
  */
@@ -11,9 +14,12 @@ function Routes() {
 
   return (
     <Switch>
+      <Route exact path="/"><Home /></Route>
+      <Route exact path="/login"><Login /></Route>
       <Route exact path="/companies"><Companies /></Route>
       <Route exact path="/companies/:handle"><Company /></Route>
       <Route exact path="/jobs"><Jobs /></Route>
+      <Route exact Path="/profile"><Profile /></Route>
       <Route><div><h1>404, dude</h1></div></Route>
     </Switch>
   )
