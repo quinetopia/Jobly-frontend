@@ -7,6 +7,9 @@ import Home from "./Home"
 import Profile from "./Profile"
 import Login from "./Login"
 
+
+//Replace 404 with a redirect
+
 /** Controls which components to load based on url. 
  */
 
