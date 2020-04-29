@@ -5,7 +5,8 @@ import Company from "./Company";
 import Jobs from "./Jobs";
 import Home from "./Home"
 import Profile from "./Profile"
-import Login from "./Login"
+import LoginForm from "./LoginForm"
+
 
 
 //Replace 404 with a redirect
@@ -18,7 +19,7 @@ function Routes() {
   return (
     <Switch>
       <Route exact path="/"><Home /></Route>
-      <Route exact path="/login"><Login /></Route>
+      <Route exact path="/login"><LoginForm /></Route>
       <Route exact path="/companies"><Companies /></Route>
       <Route exact path="/companies/:handle"><Company /></Route>
       <Route exact path="/jobs"><Jobs /></Route>

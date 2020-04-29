@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import JoblyApi from "./JoblyApi";
 
 /**
  * Login form for usesrs.
@@ -7,8 +8,9 @@ import React, { useState } from "react";
  *  State:
  *    formData: Keeps track of user input
  */
-function LoginForm({ submitFnc }){
+function LoginForm({ }){
   const [formData, setFormData] = useState()
+  const [ error, setError ] = useState({status: false, message:"There has been an error."});
 
 
   const handleChange = evt => {
@@ -20,20 +22,36 @@ function LoginForm({ submitFnc }){
     }));
   };
 
-  const handleSubmit = evt => {
-    submitFnc(formData);
+  async function handleSubmit(evt) {
+    evt.preventDefault();
+    try {
+      const token = await JoblyApi.loginUser(formData);
+      localStorage.setItem("_token", token);
+    } catch(err) {
+      if (err.status === 401) {
+        setError({status:true, message:err.message});
+      }
+    }
+
+  }
+
+  function displayError(){
+    if (error.status) return ( <h3>{error.message}</h3> );
   }
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>Username
-        <input type="text" name="Username" onChange={handleChange}/>
-      </label>
-      <label>Password
-        <input type="password" name="Password" onChange={handleChange}/>
-      </label>
-      <button>Submit</button>
-    </form>
+    <div>
+      <form onSubmit={handleSubmit}>
+        <label>Username
+          <input type="text" name="username" onChange={handleChange}/>
+        </label>
+        <label>Password
+          <input type="password" name="password" onChange={handleChange}/>
+        </label>
+        <button>Submit</button>
+      </form>
+      {displayError()}
+    </div>
   )
 }
 

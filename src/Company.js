@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Redirect } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import JoblyApi from "./JoblyApi";
 import JobCard from "./JobCard";
 
@@ -13,6 +13,8 @@ import JobCard from "./JobCard";
 function Company(){
   const { handle } = useParams();
   const [ company, setCompany] = useState({});
+  const [ error, setError ] = useState({status: false, message: "There has been an error."});
+  const [ loading, setLoading ] = useState(true);
 
   // Requests data from the api using the handle from params.
   useEffect(() => {
@@ -20,30 +22,37 @@ function Company(){
       try {
         const companyResult = await (JoblyApi.getCompany(handle));
         setCompany(companyResult);
+        setLoading(false);
       } catch(err) {
-        // if there's an error, update state to manage later.
-        setCompany({error:true});
+        if (err.status === 404) {
+          setError({status: true, message: err.message});
+        } else {
+          setError(oldError => ({...oldError, status: true}) );
+        }
       }
     }
     fetchCompany();
   },[]);
 
-  // If there was an error, redirect back to company list.
-  if (company.error) return <Redirect to="/companies" />
-
   return(
     <div>
-      {company.name ?
-        <div>
-          <h1>{company.name}</h1>
-          <h3>{company.description}</h3>
-          <div>
-            { company.jobs.map(j => <JobCard key={j.id} job={j} />) }  
+      {error.status 
+        ? <h1>{error.message}</h1>
+        : ""
+      }
+      { loading && !error.status
+        ? <h1>Loading...</h1>
+        : "" 
+      }
+      { !loading && !error.status
+        ? <div>
+            <h1>{company.name}</h1>
+            <h3>{company.description}</h3>
+            <div>
+              { company.jobs.map(j => <JobCard key={j.id} job={j} />) }  
+            </div>
           </div>
-        </div>
-      : <div>
-          <h1>Loading...</h1>
-        </div>
+        : ""
       }
     </div>
   )

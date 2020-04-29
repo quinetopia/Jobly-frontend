@@ -9,9 +9,10 @@ function NavBar() {
 
   return (
     <div className="NavBar">
-      <h4>Jobly</h4>
+      <h4><NavLink to ="/">Jobly</NavLink></h4>
       <p><NavLink to="/jobs">Jobs</NavLink></p>
       <p><NavLink to="/companies">Companies</NavLink></p>
+      <p><NavLink to="/login">Login</NavLink></p>
     </div>
   )
 }

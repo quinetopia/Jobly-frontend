@@ -26,7 +26,13 @@ function Search({ submitSearch }) {
 
   return (
     <form onSubmit={handleSubmit}>
-      <input type="text" name="search" onChange={controlSearch} placeholder="Enter search term..." value={formData}></input>
+      <label>Search: 
+        <input 
+          type="text" 
+          onChange={controlSearch} 
+          placeholder="Enter search term..." 
+          value={formData}></input>
+      </label>
       <button>Search</button>
     </form>
   )

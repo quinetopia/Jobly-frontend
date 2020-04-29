@@ -12,6 +12,8 @@ import Search from "./Search";
 function Jobs() {
   const [ jobs , setJobs ] = useState([]);
   const [ searchTerm, setSearchTerm ] = useState("");
+  const [ error, setError] = useState(false);
+  const [ loading, setLoading ] = useState(true);
 
   // Sends request to API to get jobs data. Sends the searchTerm.
   useEffect(() => {
@@ -19,8 +21,9 @@ function Jobs() {
         try {
           const JobsResult = await (JoblyApi.getJobs(term));
           setJobs(JobsResult);
+          setLoading(false);
         } catch(err) {
-          //somehting...?
+          setError(true);
         }
       }
       fetchJobs(searchTerm);
@@ -35,11 +38,13 @@ function Jobs() {
     <div>
       <h1>Available Jobs!</h1>
       <Search submitSearch={submitSearch} />
-      {jobs[0] ? 
-        jobs.map(j => 
-        <JobCard key={j.id} job={ j }/>)
-        :
-        <h1>Loading...</h1>
+      {error 
+        ? <h2>There has been an error loading external data. Please try again later.</h2>
+        : ""
+      }
+      {loading 
+        ? <h1>Loading...</h1>
+        : jobs.map(j => <JobCard key={j.id} job={ j }/>)
       }
     </div>
   );
