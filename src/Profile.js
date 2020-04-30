@@ -8,12 +8,11 @@ import JoblyApi from "./JoblyApi";
  */
 
 function Profile(){
-  const { user, setUser } = useContext(LoginContext);
+  const { user } = useContext(LoginContext);
   const [formData, setFormData] = useState(null);
   const [ error, setError ] = useState({status: false, message: "There has been an error."})
 
   useEffect(function() {
-    console.log("Effect run!");
     setFormData(oldData => ({...user, password:""}));
     }, [user])
 
@@ -34,11 +33,7 @@ function Profile(){
     try {
       await JoblyApi.updateUser(formData);
     } catch(err) {
-      if (err.status === 401) {
-        setError({status: true, message: err.message});
-      } else {
         setError({status: true, message:err.message});
-      }
     }
   }
 

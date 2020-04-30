@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useHistory } from "react-router-dom"
+import { useHistory, Redirect } from "react-router-dom"
 import JoblyApi from "./JoblyApi";
 import LoginContext from "./LoginContext"
 
@@ -19,7 +19,7 @@ const INITIAL_ERROR = {status: false, message:"There has been an error."}
 function LoginForm(){
   const [formData, setFormData] = useState()
   const [ error, setError ] = useState({...INITIAL_ERROR});
-  const { setIsLoggedIn} = useContext(LoginContext);
+  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext);
   const history = useHistory();
 
 
@@ -32,6 +32,8 @@ function LoginForm(){
     }));
   };
 
+  // Posts via JoblyApi, when user is logged in sets isLoggedIn 
+  // state and redirects to /jobs
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {
@@ -51,20 +53,23 @@ function LoginForm(){
   }
 
 
-  return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <label>Username
-          <input type="text" name="username" onChange={handleChange}/>
-        </label>
-        <label>Password
-          <input type="password" name="password" onChange={handleChange}/>
-        </label>
-        <button>Submit</button>
-      </form>
-      {displayError()}
-    </div>
+  return ( isLoggedIn ?
+      <Redirect to="/jobs"/>
+    :
+      <div>
+        <form onSubmit={handleSubmit}>
+          <label>Username
+            <input type="text" name="username" onChange={handleChange}/>
+          </label>
+          <label>Password
+            <input type="password" name="password" onChange={handleChange}/>
+          </label>
+          <button>Submit</button>
+        </form>
+        {displayError()}
+      </div>
   )
+
 }
 
 export default LoginForm;

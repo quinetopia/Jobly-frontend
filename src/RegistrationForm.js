@@ -30,6 +30,8 @@ function RegistrationForm(){
     }));
   };
 
+  // Registers user via JoblyApi. When registered store token in local storage
+  // sets isLoggedIn State to true and redirects to /jobs
   async function handleSubmit(evt) {
     evt.preventDefault();
     try {

@@ -8,7 +8,7 @@ import LoginContext from "./LoginContext";
 */
 function Home() {
   
-  const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext)
+  const { isLoggedIn } = useContext(LoginContext)
 
   return (
     <div>

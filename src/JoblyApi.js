@@ -46,10 +46,14 @@ class JoblyApi {
 
   // Posts user login credentials and recieves back token for future requests
   static async loginUser(userCredentials) {
+    console.log("Logging in");
     let res = await this.request(`login`, userCredentials, "post");
+    console.log("REsponse: ", res)
     return res.token;
   }
 
+  // updates userdata. username, jobs and empty photo_url are disallowed 
+  // fields in the API
   static async updateUser(formData) {
     const username = formData.username;
     let newData = {...formData};
@@ -68,11 +72,19 @@ class JoblyApi {
     return res.token
   }
 
+  // gets an individual user from the database
   static async getUser(username) {
     let res = await this.request(`users/${username}`);
     return res.user;
   }
 
+  // post request applies for the job for the user.
+  static async applyJob( id, username ) {
+    console.log("In JoblyAPI, id: ", id, "username", username);
+    let res = await this.request(`jobs/${id}/apply`, { username } , "post");
+    return res.message
+  }
+  
 }
 
 export default JoblyApi;

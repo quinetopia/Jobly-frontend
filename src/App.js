@@ -11,6 +11,9 @@ import JoblyApi from "./JoblyApi";
 /** Main jobly app.  
  *  State:
  *    isLoggedIn: Controls what users see on some pages  
+ *    user: User data from the database, made available via context
+ *          to child components
+ *    
 */
 
 function App() {
@@ -18,6 +21,7 @@ function App() {
   const [isLoggedIn, setIsLoggedIn] = useState(checkForToken());
   const [ user, setUser ] = useState()
   
+  // Loads user data initially and whenever IsLoggedIn changes.
   useEffect(() => {
     async function getUserData() {
       const token = localStorage.getItem("_token");
