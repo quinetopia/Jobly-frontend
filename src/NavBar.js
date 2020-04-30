@@ -27,6 +27,7 @@ function NavBar() {
       ?<span>
         <p><NavLink to="/jobs">Jobs</NavLink></p>
         <p><NavLink to="/companies">Companies</NavLink></p>
+        <p><NavLink to="/profile">Profile</NavLink></p>
         <button onClick={logOut}>Log out</button>
       </span>
       :<span>

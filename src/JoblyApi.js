@@ -50,6 +50,17 @@ class JoblyApi {
     return res.token;
   }
 
+  static async updateUser(formData) {
+    const username = formData.username;
+    let newData = {...formData};
+    delete newData.username;
+    delete newData.jobs;
+    if (!newData.photo_url) delete newData.photo_url;
+    console.log("What the API gets as formdata: ", newData);
+    let res = await this.request(`users/${username}`, newData, "patch");
+    return res.user;
+  }
+
   // Posts new user data to create new user. 
   // Receives back token for future requests
   static async registerUser(registrationData) {

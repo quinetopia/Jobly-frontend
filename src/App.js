@@ -25,6 +25,7 @@ function App() {
         const username = jwt.decode(token).username;
         const userData = await JoblyApi.getUser(username);
         setUser(userData);
+        
       } 
       
     }
