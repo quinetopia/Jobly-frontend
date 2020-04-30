@@ -44,7 +44,7 @@ import React, { useState } from "react"
       </label>
       <br/>
       <label>Email
-        <input type="text" name="femail" value={formData.email} onChange={handleChange}/>
+        <input type="text" name="email" value={formData.email} onChange={handleChange}/>
       </label>
       <br/>
       <label>Photo URL

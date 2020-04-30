@@ -13,6 +13,8 @@ function NavBar() {
 
   const { isLoggedIn, setIsLoggedIn } = useContext(LoginContext)
 
+  // Should NavBar "know how" to log out? Could be in app or a new auth parent.
+
   function logOut() {
     localStorage.removeItem("_token");
     setIsLoggedIn(false);
