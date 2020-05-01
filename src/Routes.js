@@ -15,7 +15,7 @@ import LoginContext from "./LoginContext"
  *    isLoggedIn: determines wheter users has access to certain routes
  */
 
-function Routes() {
+function Routes({ user }) {
   const { isLoggedIn } = useContext(LoginContext);
 
   return   (

@@ -1,0 +1,31 @@
+"Auth route"
+
+Certain components need to have user data (and know if you're logged in).
+ - Profile
+ - JobCard
+
+ Right now we have a context that tracks both, set on the app. 
+
+ app
+   routes
+      everything else
+
+app
+   routes
+      authorized < props v context? 
+         authorized components
+         public components 
+
+
+
+Auth
+  function to update user
+
+  state: user
+  
+
+
+Profile
+  return form
+  state = content of the form
+  prop = function to update user
